@@ -1,3 +1,5 @@
+from rois import *
+
 import ee
 try:
     ee.Initialize(opt_url='https://earthengine-highvolume.googleapis.com')
@@ -31,9 +33,9 @@ export  = ee.batch.Export.image.toAsset(
     image       = supervised_class.select("classification").set({'year':year, 'version':version}),
     description = 'supervisedImage_unet_'+class_name+'_'+year+'_v'+version,
     assetId     = '__PATH__'+year,
-    region      = ROI
+    region      = ROI,
     scale       = 30,
     maxPixels   = 1e13,
-    shardSize   = 256 
+    shardSize   = 256
 )
 # export.start()
